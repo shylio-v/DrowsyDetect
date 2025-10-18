@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DrowsyDetect - 疲劳检测</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <h1>DrowsyDetect</h1>
+      <p>使用笔记本摄像头与人脸关键点检测来识别疲劳状态</p>
+    </header>
+
+    <main class="container">
+      <section class="controls">
+        <div class="control-row">
+          <button id="btnStart">启动摄像头</button>
+          <button id="btnStop" disabled>停止摄像头</button>
+          <button id="btnRetry" style="display:none;">重试加载模型</button>
+          <label>
+            摄像头
+            <select id="selCamera">
+              <option value="">自动选择</option>
+            </select>
+          </label>
+          <label class="toggle">
+            <input type="checkbox" id="cbOverlay" checked />
+            <span>叠加关键点</span>
+          </label>
+        </div>
+        <div class="control-row">
+          <label>
+            置信阈值
+            <input id="inpConfidence" type="range" min="0" max="1" step="0.01" value="0.5" />
+            <span id="lblConfidence">0.50</span>
+          </label>
+          <label>
+            疲劳阈值 (EAR)
+            <input id="inpEarThresh" type="range" min="0.1" max="0.5" step="0.005" value="0.23" />
+            <span id="lblEarThresh">0.230</span>
+          </label>
+          <label>
+            持续帧数
+            <input id="inpConsec" type="range" min="1" max="60" step="1" value="15" />
+            <span id="lblConsec">15</span>
+          </label>
+        </div>
+      </section>
+
+      <section class="stage">
+        <div class="video-wrap">
+          <video id="video" playsinline muted></video>
+          <canvas id="overlay"></canvas>
+          <div id="alert" class="alert">疲劳预警</div>
+        </div>
+        <aside class="metrics">
+          <div><strong>状态:</strong> <span id="lblStatus">未启动</span></div>
+          <div><strong>FPS:</strong> <span id="lblFps">0</span></div>
+          <div><strong>EAR:</strong> <span id="lblEar">-</span></div>
+          <div><strong>检测:</strong> <span id="lblDetection">无</span></div>
+          <div><strong>模型:</strong> <span id="lblModel">未加载</span></div>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <a href="README.md" target="_blank">帮助/README</a>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js"></script>
+    <script>
+      // Wait for all MediaPipe scripts to load before starting main.js
+      window.addEventListener('load', () => {
+        // Check if MediaPipe is loaded
+        if (typeof FaceMesh !== 'undefined' && typeof Camera !== 'undefined') {
+          console.log('MediaPipe loaded successfully');
+          // Load main.js as a regular script instead of module
+          const script = document.createElement('script');
+          script.src = 'main.js';
+          document.head.appendChild(script);
+        } else {
+          console.error('MediaPipe failed to load');
+          // Still load main.js but with error handling
+          const script = document.createElement('script');
+          script.src = 'main.js';
+          document.head.appendChild(script);
+        }
+      });
+    </script>
+  </body>
+  </html>
+
+
+

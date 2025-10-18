@@ -1,0 +1,54 @@
+:root {
+  --bg: #0f172a;
+  --panel: #111827;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --accent: #22d3ee;
+  --danger: #ef4444;
+  --ok: #22c55e;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  background: linear-gradient(180deg, #0b1024, var(--bg));
+  color: var(--text);
+}
+
+.app-header, .app-footer {
+  padding: 16px 24px;
+}
+.app-header h1 { margin: 0 0 4px; font-weight: 700; }
+.app-header p { margin: 0; color: var(--muted); }
+
+.container { padding: 0 24px 24px; }
+
+.controls { background: var(--panel); border-radius: 12px; padding: 12px; margin-top: 12px; }
+.control-row { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; padding: 6px 0; }
+.control-row button { background: var(--accent); color: #001018; border: none; border-radius: 8px; padding: 10px 14px; cursor: pointer; font-weight: 600; }
+.control-row button[disabled] { opacity: 0.5; cursor: not-allowed; }
+.control-row label { display: flex; align-items: center; gap: 8px; color: var(--text); }
+.control-row input[type="range"] { width: 180px; }
+.toggle { margin-left: auto; }
+
+.stage { display: grid; grid-template-columns: 1fr 260px; gap: 16px; align-items: start; margin-top: 16px; }
+.video-wrap { position: relative; background: #000; border-radius: 12px; overflow: hidden; aspect-ratio: 4/3; }
+video { width: 100%; height: 100%; object-fit: cover; display: block; }
+canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.alert { position: absolute; left: 12px; bottom: 12px; background: color-mix(in srgb, var(--danger) 85%, transparent); padding: 8px 12px; border-radius: 8px; font-weight: 700; display: none; }
+
+.metrics { background: var(--panel); border-radius: 12px; padding: 12px; }
+.metrics div { margin: 8px 0; color: var(--muted); }
+.metrics strong { color: var(--text); }
+
+.ok { color: var(--ok); }
+.warn { color: var(--danger); }
+
+@media (max-width: 960px) {
+  .stage { grid-template-columns: 1fr; }
+}
+
+
+
