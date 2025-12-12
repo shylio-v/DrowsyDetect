@@ -8,7 +8,7 @@ A real-time fatigue detection web app based on computer vision.
 ## 运行
 
 1. 直接双击打开 `index.html`（推荐用本地 HTTP 服务器以避免权限问题）。
-2. 浏览器会请求摄像头权限，允许即可。
+2. 点击“启动摄像头”，浏览器会请求摄像头权限，允许即可。
 
 如果需要本地服务器（任选一种）：
 
