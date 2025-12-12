@@ -3,6 +3,7 @@
 A real-time fatigue detection web app based on computer vision.
 
 使用笔记本摄像头 + MediaPipe FaceMesh 进行实时疲劳（闭眼）检测。通过计算眼睛纵横比（EAR）并在低于阈值、连续一定帧数后触发“疲劳预警”。
+<img width="1658" height="864" alt="image" src="https://github.com/user-attachments/assets/fea022d0-5adc-4814-bda6-aa9f1e95a850" />
 
 ## 运行
 
